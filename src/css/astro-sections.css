@@ -488,17 +488,6 @@ section.clients-band {
 .mission.flip .mission-media { order: 2; }
 .mission.flip .mission-copy { order: 1; }
 
-.mission-code {
-  font-family: var(--font-display);
-  direction: ltr;
-  text-align: right;
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.34em;
-  color: var(--accent-2);
-  text-shadow: 0 0 16px var(--accent-2-glow);
-}
-
 .mission-name {
   font-family: var(--font-display);
   direction: ltr;
@@ -506,7 +495,6 @@ section.clients-band {
   font-size: clamp(28px, 3.4vw, 44px);
   font-weight: 800;
   letter-spacing: 0.05em;
-  margin-top: 12px;
 }
 
 .mission-tagline {
@@ -521,6 +509,8 @@ section.clients-band {
   color: var(--ink-dim);
   margin-top: 12px;
   max-width: 54ch;
+  font-size: 18.5px;
+  line-height: 1.7;
 }
 
 .mission-copy .chips { margin-top: 26px; }
@@ -540,7 +530,6 @@ section.clients-band {
     0 0 60px var(--accent-2-glow);
   transition: box-shadow 0.45s ease, transform 0.2s ease-out;
   transform-style: preserve-3d;
-  -webkit-box-reflect: below 18px linear-gradient(transparent 62%, rgba(255, 255, 255, 0.14));
 }
 
 .tilt:hover {
@@ -760,6 +749,67 @@ section.clients-band {
   color: var(--ink-dim);
 }
 
+/* ---------- Founders ---------- */
+.founders {
+  margin-top: clamp(36px, 5vw, 60px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(18px, 2.5vw, 28px);
+}
+
+.founder-card {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 28px);
+  padding: clamp(22px, 3vw, 34px);
+  border-radius: 22px;
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s ease;
+}
+
+.founder-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), 0 0 40px var(--accent-2-glow);
+}
+
+.founder-photo {
+  flex: 0 0 auto;
+  width: clamp(92px, 9vw, 120px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--glass-stroke-glow);
+  box-shadow: 0 0 30px var(--accent-2-glow);
+}
+
+.founder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.founder-name { font-size: clamp(20px, 2.2vw, 26px); }
+
+.founder-role {
+  margin-top: 6px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--accent-1);
+  text-shadow: 0 0 14px var(--accent-1-glow);
+}
+
+.founder-bio {
+  margin-top: 8px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+.founder-link {
+  display: inline-block;
+  margin-top: 14px;
+}
+
 /* ====================== CONSTELLATION ====================== */
 .constellation-wrap {
   padding: clamp(20px, 3vw, 40px);
@@ -972,6 +1022,13 @@ section.clients-band {
   .fleet-stage { flex-wrap: wrap; min-height: 0; }
   .phone.back { display: none; }
   .dash { grid-template-columns: 1fr; }
+
+  .founders { grid-template-columns: 1fr; }
+
+  .founder-card {
+    flex-direction: column;
+    text-align: center;
+  }
   .hero-ctas .btn { width: 100%; }
   .process-track { grid-template-columns: 1fr; }
   .mission-index { font-size: 64px; top: 18px; }

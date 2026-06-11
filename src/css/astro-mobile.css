@@ -36,9 +36,6 @@
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
-
-  /* the mirror reflection under mockups costs height + repaints */
-  .browser { -webkit-box-reflect: none; }
 }
 
 /* ---------- ≤980px: tablets ---------- */
@@ -99,7 +96,7 @@
 
   .mission-head { gap: 13px; }
   .mission-tagline { font-size: 17px; }
-  .mission-desc { font-size: 15px; }
+  .mission-desc { font-size: 16.5px; }
   .mission-copy .chips,
   .mission-copy .tech-row { margin-top: 20px; }
   .chip { font-size: 12.5px; padding: 6px 13px; }

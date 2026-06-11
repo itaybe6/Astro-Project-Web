@@ -57,7 +57,6 @@
     <div class="mission-head">
       ${logoBadge(p)}
       <div>
-        <div class="mission-code">MISSION · ${esc(p.code)}</div>
         <h3 class="mission-name">${esc(p.name)}</h3>
       </div>
     </div>
@@ -112,7 +111,6 @@
     <div class="mission-head">
       ${logoBadge(p)}
       <div>
-        <div class="mission-code">MISSION · ${esc(p.code)}</div>
         <h3 class="mission-name">${esc(p.name)}</h3>
       </div>
     </div>
@@ -144,7 +142,6 @@
     <div class="tori-head">
       ${logoBadge(p)}
       <div>
-        <div class="mission-code">FLAGSHIP · ${esc(p.code)}</div>
         <h3 class="mission-name">${esc(p.name)}</h3>
       </div>
     </div>
@@ -157,8 +154,10 @@
     </div>
   </div>
   <div class="tori-demo">
-    <div class="tori-video-frame">
-      <video id="tori-video" src="${esc(p.videos[0].src)}" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="fleet-stage tori-stage">
+      ${phone(`<img class="shot-img" src="${esc(p.shots[1].src)}" alt="${esc(p.shots[1].alt)}" loading="lazy">`, 'back lean-l', '-3s')}
+      ${phone(`<video id="tori-video" src="${esc(p.videos[0].src)}" autoplay muted loop playsinline preload="metadata"></video>`, 'tilt')}
+      ${phone(`<img class="shot-img" src="${esc(p.shots[4].src)}" alt="${esc(p.shots[4].alt)}" loading="lazy">`, 'back lean-r', '-1.4s')}
     </div>
     <div class="tori-video-chips">${videoChips}</div>
   </div>

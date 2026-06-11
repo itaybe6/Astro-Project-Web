@@ -88,8 +88,22 @@
   pending.forEach((el) => revealObs.observe(el));
   setTimeout(revealCheck, 80); /* after first paint, so entrance transitions still play */
 
-  /* Scroll-event fallback in case IO never fires */
-  window.addEventListener('scroll', revealCheck, { passive: true });
+  /* Scroll-event fallback in case IO never fires — throttled to one
+     layout read per frame and removed once everything is revealed,
+     so it never causes jank while scrolling. */
+  function scrollFallback() {
+    if (scrollFallback.tick) return;
+    scrollFallback.tick = true;
+    requestAnimationFrame(() => {
+      scrollFallback.tick = false;
+      revealCheck();
+      countCheck();
+      if (pending.size === 0 && pendingCounts.size === 0) {
+        window.removeEventListener('scroll', scrollFallback);
+      }
+    });
+  }
+  window.addEventListener('scroll', scrollFallback, { passive: true });
   window.__revealCheck = revealCheck;
 
   /* ---------- Animated counters ---------- */
@@ -120,8 +134,8 @@
   const pendingCounts = new Set(document.querySelectorAll('[data-count]'));
   pendingCounts.forEach((el) => countObs.observe(el));
 
-  /* Counter fallback mirroring revealCheck */
-  window.addEventListener('scroll', () => {
+  /* Counter fallback mirroring revealCheck (called from scrollFallback) */
+  function countCheck() {
     for (const el of [...pendingCounts]) {
       const r = el.getBoundingClientRect();
       if (r.top < window.innerHeight && r.bottom > 0) {
@@ -130,7 +144,7 @@
         animateCount(el);
       }
     }
-  }, { passive: true });
+  }
 
   /* ---------- 3D tilt on mockups ---------- */
   if (!reduceMotion && matchMedia('(pointer: fine)').matches) {

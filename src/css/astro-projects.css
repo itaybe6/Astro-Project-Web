@@ -232,26 +232,26 @@ a.fleet-stage { display: flex; }
 
 .tori-demo {
   display: grid;
-  gap: 18px;
+  gap: 26px;
   justify-items: center;
 }
 
-.tori-video-frame {
+/* iPhone fleet around the live demo video */
+.tori-stage {
   width: 100%;
-  border-radius: 22px;
-  overflow: hidden;
-  background: #05050f;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.55),
-    0 0 60px var(--accent-2-glow);
+  min-height: 0;
 }
 
-.tori-video-frame video {
-  display: block;
+.tori-stage .phone {
+  width: clamp(180px, 14vw, 235px);
+}
+
+.tori-stage .phone-screen video {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-height: 520px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
   background: #05050f;
   transition: opacity 0.22s ease;
 }
