@@ -25,6 +25,7 @@ window.ASTRO_PROJECTS = [
     ],
     features: ['בית ספר דיגיטלי מלא', 'מבחנים שנבדקים אוטומטית', 'תשלום מאובטח אונליין', 'חנות מקוונת', 'חדר מורים דיגיטלי', 'מעקב התקדמות אישי', 'אימיילים אוטומטיים'],
     logo: 'assets/projects/cgs/logo.png',
+    logoLight: true,
     shots: [
       { src: 'assets/projects/cgs/shot-1.jpeg', alt: 'C.G.S — דף הבית' },
       { src: 'assets/projects/cgs/shot-2.jpeg', alt: 'C.G.S — קטלוג קורסים' },
@@ -57,6 +58,7 @@ window.ASTRO_PROJECTS = [
     ],
     features: ['סנכרון משימות בזמן אמת', 'חשבוניות וקבלות בלחיצה', 'המייל מחובר למערכת', 'עוזר חכם שעונה על שאלות', 'תזכורות גבייה אוטומטיות', 'ניהול מסמכים', 'מסך מותאם לכל תפקיד'],
     logo: 'assets/projects/spe/logo.png',
+    logoLight: true,
     shots: [
       { src: 'assets/projects/spe/shot-1.jpeg', alt: 'SPE — לוח בקרה' },
       { src: 'assets/projects/spe/shot-2.jpeg', alt: 'SPE — ניהול משימות' },
@@ -177,6 +179,7 @@ window.ASTRO_PROJECTS = [
     ],
     features: ['קטלוג ציבורי ללקוחות', 'הצעות מחיר PDF בלחיצה', 'סידור הובלה בתלת־ממד', 'מפת לקוחות חיה', 'פורטל נפרד למובילים', 'עוזר AI מובנה', 'מלאי לפי מחסן ווריאנט', 'מעקב משלוחים מספקים'],
     logo: 'assets/projects/kerur-dan/logo.png',
+    logoLight: true,
     shots: [
       { src: 'assets/projects/kerur-dan/shot-1.png', alt: 'קירור דן — דשבורד ראשי' },
       { src: 'assets/projects/kerur-dan/shot-2.png', alt: 'קירור דן — קטלוג מוצרים' },
@@ -209,6 +212,7 @@ window.ASTRO_PROJECTS = [
     ],
     features: ['לוח אישורי הגעה חי', 'מפת הושבה בגרירה', 'הזמנה דיגיטלית אישית', 'תזכורות SMS ו-WhatsApp', 'קבלת אורחים ביום האירוע', 'ייבוא אנשי קשר', 'בנייד ובמחשב'],
     logo: 'assets/projects/moon/logo.png',
+    logoLight: true, /* dark logo — needs a light backing on the dark site */
     shots: [
       { src: 'assets/projects/moon/shot-1.jpeg', alt: 'Moon — דשבורד אירוע' },
       { src: 'assets/projects/moon/shot-2.jpeg', alt: 'Moon — רשימת אורחים' },

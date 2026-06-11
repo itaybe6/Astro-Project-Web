@@ -62,12 +62,15 @@
 }
 
 .hero-logo img {
-  width: min(660px, 86vw);
+  width: min(760px, 92vw);
   height: auto;
   filter:
     drop-shadow(0 0 26px var(--accent-2-glow))
     drop-shadow(0 16px 60px rgba(0, 0, 0, 0.6));
-  animation: logo-breathe 6s ease-in-out infinite;
+  animation:
+    logo-breathe 6s ease-in-out infinite,
+    logo-hover 7s ease-in-out infinite;
+  will-change: transform, filter;
 }
 
 @keyframes logo-breathe {
@@ -78,11 +81,33 @@
   }
 }
 
+/* gentle zero-gravity hover — drift, tilt and a hint of scale */
+@keyframes logo-hover {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  25% { transform: translateY(-12px) rotate(-1.1deg) scale(1.012); }
+  50% { transform: translateY(4px) rotate(0.6deg) scale(1); }
+  75% { transform: translateY(-7px) rotate(1deg) scale(1.008); }
+}
+
+/* the halo breathes along with the logo */
+.hero-logo::before {
+  animation: halo-pulse 7s ease-in-out infinite;
+}
+
+@keyframes halo-pulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo img, .hero-logo::before { animation: none; }
+}
+
 .hero-tagline {
-  font-size: clamp(19px, 2.6vw, 27px);
+  font-size: clamp(22px, 3vw, 32px);
   font-weight: 300;
   color: var(--ink-dim);
-  margin-top: 26px;
+  margin-top: 30px;
 }
 
 .hero-tagline strong { color: var(--ink); font-weight: 600; }
@@ -175,6 +200,141 @@
 
 @keyframes orbit-spin { to { transform: rotate(360deg); } }
 
+/* ====================== BACKGROUND PLANETS ======================
+   Decorative sibling planets scattered across sections.
+   Position & size are set inline per instance (--size, top, inset-inline). */
+.bg-planet {
+  position: absolute;
+  width: var(--size, 220px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--o, 0.75);
+  animation: planet-drift var(--drift, 18s) ease-in-out infinite;
+}
+
+/* atmosphere rim, shared */
+.bg-planet::after {
+  content: "";
+  position: absolute;
+  inset: -3%;
+  border-radius: 50%;
+  border: 1.5px solid var(--rim, rgba(255, 255, 255, 0.12));
+  filter: blur(1px);
+}
+
+/* --- Mars: warm rocky planet with crater shading --- */
+.bg-planet--mars {
+  --rim: oklch(0.7 0.15 45 / 0.22);
+  background:
+    radial-gradient(18% 16% at 62% 38%, oklch(0.3 0.1 40 / 0.55), transparent 72%),
+    radial-gradient(12% 11% at 40% 64%, oklch(0.28 0.09 35 / 0.5), transparent 72%),
+    radial-gradient(9% 8% at 70% 68%, oklch(0.3 0.1 45 / 0.45), transparent 72%),
+    radial-gradient(circle at 30% 28%,
+      oklch(0.68 0.15 50),
+      oklch(0.45 0.15 40) 45%,
+      oklch(0.24 0.1 35) 75%,
+      oklch(0.13 0.05 30) 100%);
+  box-shadow:
+    inset -26px -22px 56px rgba(0, 0, 0, 0.75),
+    inset 10px 9px 38px oklch(0.75 0.14 60 / 0.14),
+    0 0 64px oklch(0.55 0.17 45 / 0.3);
+}
+
+/* --- Gas giant: banded amber planet with a ring --- */
+.bg-planet--gas {
+  --rim: oklch(0.8 0.12 80 / 0.2);
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.22), transparent 46%),
+    radial-gradient(circle at 68% 74%, rgba(0, 0, 0, 0.72), transparent 62%),
+    linear-gradient(168deg,
+      oklch(0.62 0.11 75),
+      oklch(0.5 0.12 60) 22%,
+      oklch(0.66 0.11 85) 34%,
+      oklch(0.44 0.12 50) 52%,
+      oklch(0.58 0.11 70) 66%,
+      oklch(0.36 0.1 45) 84%,
+      oklch(0.24 0.07 40) 100%);
+  box-shadow:
+    inset -24px -20px 54px rgba(0, 0, 0, 0.7),
+    0 0 70px oklch(0.6 0.13 70 / 0.3);
+}
+
+.bg-planet--gas::before {
+  content: "";
+  position: absolute;
+  width: 138%;
+  height: 36%;
+  inset-inline-start: -19%;
+  top: 36%;
+  border-radius: 50%;
+  border: 2px solid oklch(0.8 0.1 80 / 0.3);
+  border-top-color: transparent;
+  transform: rotate(-14deg);
+  box-shadow: 0 0 22px oklch(0.8 0.1 80 / 0.14);
+}
+
+/* --- Ice planet: pale frozen cyan --- */
+.bg-planet--ice {
+  --rim: oklch(0.88 0.08 210 / 0.26);
+  background:
+    radial-gradient(20% 16% at 56% 30%, oklch(0.95 0.04 200 / 0.4), transparent 70%),
+    radial-gradient(14% 12% at 36% 58%, oklch(0.92 0.05 210 / 0.3), transparent 70%),
+    radial-gradient(circle at 30% 28%,
+      oklch(0.88 0.07 205),
+      oklch(0.6 0.1 220) 48%,
+      oklch(0.32 0.09 235) 78%,
+      oklch(0.16 0.05 240) 100%);
+  box-shadow:
+    inset -24px -20px 52px rgba(0, 0, 10, 0.7),
+    inset 10px 9px 36px oklch(0.92 0.06 200 / 0.2),
+    0 0 64px oklch(0.7 0.11 215 / 0.32);
+}
+
+/* --- Rose planet: magenta-pink dwarf --- */
+.bg-planet--rose {
+  --rim: oklch(0.78 0.14 345 / 0.22);
+  background:
+    radial-gradient(16% 14% at 60% 44%, oklch(0.4 0.14 350 / 0.5), transparent 72%),
+    radial-gradient(circle at 30% 28%,
+      oklch(0.72 0.16 350),
+      oklch(0.46 0.17 340) 46%,
+      oklch(0.24 0.11 330) 76%,
+      oklch(0.13 0.06 325) 100%);
+  box-shadow:
+    inset -22px -18px 48px rgba(0, 0, 0, 0.75),
+    inset 9px 8px 34px oklch(0.8 0.13 345 / 0.16),
+    0 0 60px oklch(0.55 0.18 345 / 0.32);
+}
+
+/* --- Emerald planet: teal-green world --- */
+.bg-planet--emerald {
+  --rim: oklch(0.82 0.12 165 / 0.22);
+  background:
+    radial-gradient(18% 15% at 58% 36%, oklch(0.85 0.1 160 / 0.3), transparent 70%),
+    radial-gradient(13% 11% at 38% 62%, oklch(0.35 0.1 175 / 0.5), transparent 72%),
+    radial-gradient(circle at 30% 28%,
+      oklch(0.74 0.13 165),
+      oklch(0.46 0.13 175) 46%,
+      oklch(0.25 0.09 190) 76%,
+      oklch(0.13 0.05 200) 100%);
+  box-shadow:
+    inset -22px -18px 48px rgba(0, 0, 5, 0.75),
+    inset 9px 8px 34px oklch(0.85 0.1 160 / 0.16),
+    0 0 60px oklch(0.6 0.13 170 / 0.3);
+}
+
+/* keep section content above the decorative planets */
+section[data-screen-label] > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-planet { animation: none; }
+}
+
 .scroll-hint {
   position: absolute;
   bottom: 30px;
@@ -247,40 +407,28 @@ section.clients-band {
 .marquee-item {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 24px;
-  border-radius: 999px;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-stroke);
+  flex-shrink: 0;
   text-decoration: none;
-  margin-inline-end: clamp(18px, 2.6vw, 36px);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-out);
+  margin-inline-end: clamp(36px, 5vw, 64px);
+  transition: transform 0.3s var(--ease-out), opacity 0.3s ease;
 }
 
 .marquee-item:hover {
-  border-color: var(--glass-stroke-glow);
-  box-shadow: 0 0 26px var(--accent-1-glow);
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.06);
 }
 
 .marquee-item img {
-  width: 42px;
-  height: 42px;
+  width: clamp(80px, 10vw, 104px);
+  height: clamp(80px, 10vw, 104px);
   object-fit: contain;
-  border-radius: 11px;
-  background: rgba(255, 255, 255, 0.07);
-  padding: 4px;
+  display: block;
+  border-radius: 50%;
+  padding: clamp(10px, 1.4vw, 14px);
+  box-sizing: border-box;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: rgba(8, 12, 28, 0.72);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
-
-.marquee-name {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--ink-dim);
-  white-space: nowrap;
-}
-
-.marquee-item:hover .marquee-name { color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
@@ -464,11 +612,12 @@ section.clients-band {
   padding-block: clamp(60px, 8vw, 110px);
 }
 
-/* Giant watermark mission number */
+/* Giant watermark mission number — opposite side from mission copy */
 .mission-index {
   position: absolute;
   top: clamp(28px, 4vw, 54px);
-  inset-inline-end: -8px;
+  right: -8px;
+  left: auto;
   font-family: var(--font-display);
   font-size: clamp(72px, 11vw, 150px);
   font-weight: 900;
@@ -478,6 +627,11 @@ section.clients-band {
   pointer-events: none;
   user-select: none;
   z-index: 0;
+}
+
+.mission.flip .mission-index {
+  right: auto;
+  left: -8px;
 }
 
 .mission-media,
@@ -806,8 +960,17 @@ section.clients-band {
 }
 
 .founder-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-top: 14px;
+}
+
+.founder-link img {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: block;
 }
 
 /* ====================== CONSTELLATION ====================== */
@@ -982,6 +1145,7 @@ section.clients-band {
   .mission.flip .mission-copy { order: 1; }
   .crew-grid, .contact-grid { grid-template-columns: 1fr; }
   .planet-wrap { opacity: 0.45; top: 4%; }
+  .bg-planet { opacity: calc(var(--o, 0.75) * 0.65); }
   .process-track { grid-template-columns: repeat(2, 1fr); }
   .process-line { display: none; }
 

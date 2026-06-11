@@ -84,6 +84,7 @@
 
   .hero-ctas { margin-top: 32px; gap: 12px; }
   .planet-wrap { opacity: 0.3; }
+  .bg-planet { opacity: calc(var(--o, 0.75) * 0.45); }
   .scroll-hint { bottom: 18px; }
 
   /* --- missions --- */
@@ -168,6 +169,6 @@
 /* ---------- ≤400px: small phones ---------- */
 @media (max-width: 400px) {
   .nav-cta .btn-ghost { display: none; }
-  .hero-logo img { width: 92vw; }
+  .hero-logo img { width: 96vw; }
   .mission-index { font-size: 52px; }
 }

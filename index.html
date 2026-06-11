@@ -18,6 +18,16 @@
 <body>
 
 <canvas id="space" class="space-canvas"></canvas>
+<div class="shooting-stars" aria-hidden="true">
+  <i style="--t: 4%;  --l: -12%; --ang: 32deg; --dur: 7s;  --d: 0s;    --c: 139, 233, 255;"></i>
+  <i style="--t: 18%; --l: 6%;   --ang: 28deg; --dur: 9s;  --d: 2.4s;  --c: 255, 255, 255;"></i>
+  <i style="--t: -6%; --l: 30%;  --ang: 36deg; --dur: 8s;  --d: 4.1s;  --c: 190, 150, 255;"></i>
+  <i style="--t: 36%; --l: -8%;  --ang: 30deg; --dur: 11s; --d: 5.6s;  --c: 139, 233, 255;"></i>
+  <i style="--t: -4%; --l: 55%;  --ang: 34deg; --dur: 10s; --d: 7.3s;  --c: 255, 140, 220;"></i>
+  <i style="--t: 10%; --l: 42%;  --ang: 27deg; --dur: 8s;  --d: 9s;    --c: 255, 255, 255;"></i>
+  <i style="--t: 50%; --l: 10%;  --ang: 33deg; --dur: 12s; --d: 10.8s; --c: 190, 150, 255;"></i>
+  <i style="--t: 26%; --l: 64%;  --ang: 30deg; --dur: 9s;  --d: 12.5s; --c: 139, 233, 255;"></i>
+</div>
 <div class="nebula"></div>
 <div class="aurora"></div>
 <div class="grain"></div>
@@ -59,15 +69,10 @@
     </div>
 
     <div class="hero-inner wrap">
-      <div class="hero-badge glass reveal"><span class="logo-orb"></span>מערכות מתקדמות · אתרים · אפליקציות לכל צורך</div>
       <h1 class="hero-logo reveal" style="--d: 0.1s;">
         <img src="/assets/astro-logo.png" alt="ASTRO PROJECT">
       </h1>
       <p class="hero-tagline reveal" style="--d: 0.25s;">אנחנו פשוט בונים מערכות תוכנה <strong>מעולם אחר</strong>.</p>
-      <div class="hero-ctas reveal" style="--d: 0.4s;">
-        <a class="btn btn-primary" href="#mobile">גלו את היקום שלנו</a>
-        <a class="btn btn-ghost" href="#contact">יצירת קשר</a>
-      </div>
     </div>
 
     <div class="scroll-hint">
@@ -89,6 +94,7 @@
 
   <!-- ======================= MOBILE FLEET ======================= -->
   <section id="mobile" data-screen-label="Mobile Fleet">
+    <div class="bg-planet bg-planet--mars" aria-hidden="true" style="--size: clamp(160px, 18vw, 260px); --o: 0.7; --drift: 17s; inset-inline-start: clamp(-130px, -7vw, -50px); top: 6%;"></div>
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="kicker">Mobile Fleet</div>
@@ -101,6 +107,7 @@
 
   <!-- ======================= WEB MISSIONS ======================= -->
   <section id="web" data-screen-label="Web Missions">
+    <div class="bg-planet bg-planet--ice" aria-hidden="true" style="--size: clamp(120px, 14vw, 200px); --o: 0.65; --drift: 21s; inset-inline-end: clamp(-100px, -5vw, -36px); top: 55%;"></div>
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="kicker">Web Missions</div>
@@ -113,10 +120,11 @@
 
   <!-- ======================= TORI — THE MOTHERSHIP (SaaS) ======================= -->
   <section id="tori" data-screen-label="Tori — The Mothership">
+    <div class="bg-planet bg-planet--gas" aria-hidden="true" style="--size: clamp(180px, 22vw, 300px); --o: 0.75; --drift: 19s; inset-inline-start: clamp(-150px, -8vw, -60px); top: 24%;"></div>
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="kicker">The Mothership</div>
-        <h2 class="section-title">ספינת האם — <span class="gradient-text">Tori</span></h2>
+        <h2 class="section-title">ספינת האם — <span class="tori-gradient">Tori</span></h2>
         <p class="section-sub">המוצר שלנו: פלטפורמה שבונה לכל עסק אפליקציית תורים אישית וממותגת — באוויר תוך 72 שעות.</p>
       </div>
       <div id="tori-spotlight"><!-- rendered by astro-projects.js --></div>
@@ -125,6 +133,7 @@
 
   <!-- ======================= PROCESS — FLIGHT PLAN ======================= -->
   <section id="process" data-screen-label="Flight Plan">
+    <div class="bg-planet bg-planet--rose" aria-hidden="true" style="--size: clamp(100px, 12vw, 160px); --o: 0.6; --drift: 16s; inset-inline-end: clamp(-80px, -4vw, -28px); top: 4%;"></div>
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="kicker">Flight Plan</div>
@@ -210,6 +219,7 @@
 
   <!-- ======================= CREW ======================= -->
   <section id="crew" data-screen-label="About the Crew">
+    <div class="bg-planet bg-planet--emerald" aria-hidden="true" style="--size: clamp(140px, 16vw, 220px); --o: 0.65; --drift: 22s; inset-inline-start: clamp(-110px, -6vw, -40px); top: 58%;"></div>
     <div class="wrap crew-grid">
       <div class="crew-story reveal reveal-start">
         <div class="kicker">About the Crew</div>
@@ -250,7 +260,7 @@
           <h3 class="founder-name">אדיר בוקובזה</h3>
           <div class="founder-role">מייסד-שותף ומנכ"ל · Co-Founder &amp; CEO</div>
           <p class="founder-bio">מתכנת עם שנים של ניסיון בבניית מערכות ואפליקציות מקצה לקצה.</p>
-          <a class="social founder-link" href="https://www.linkedin.com/in/adir-bokobza" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="social founder-link" href="https://www.linkedin.com/in/adir-bokobza-89017927b/" target="_blank" rel="noopener"><img src="assets/linkedin.png" alt="" loading="lazy">LinkedIn</a>
         </div>
       </div>
 
@@ -260,7 +270,7 @@
           <h3 class="founder-name">איתי בן יאיר</h3>
           <div class="founder-role">מייסד-שותף ומנכ"ל · Co-Founder &amp; CEO</div>
           <p class="founder-bio">מתכנת עם שנים של ניסיון בפיתוח מוצרים דיגיטליים מהרעיון ועד השיגור.</p>
-          <a class="social founder-link" href="https://www.linkedin.com/in/itay-ben-yair" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="social founder-link" href="https://www.linkedin.com/in/itaybenyair/" target="_blank" rel="noopener"><img src="assets/linkedin.png" alt="" loading="lazy">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -268,14 +278,15 @@
 
   <!-- ======================= CONTACT ======================= -->
   <section id="contact" data-screen-label="Initiate Contact">
+    <div class="bg-planet bg-planet--rose" aria-hidden="true" style="--size: clamp(70px, 8vw, 110px); --o: 0.5; --drift: 15s; inset-inline-end: 5%; top: 8%;"></div>
     <div class="wrap contact-grid">
       <div class="contact-side reveal reveal-start">
         <div class="kicker">Initiate Contact</div>
         <h2 class="section-title">יש לכם משימה בשבילנו?</h2>
         <p class="contact-note">ספרו לנו על הרעיון, המוצר או הבעיה — ונחזור אליכם עם תוכנית שיגור תוך 24 שעות.</p>
         <div class="contact-meta">
-          <div><span class="en">hello@astroproject.dev</span></div>
-          <div><span class="en">+972-54-000-0000</span></div>
+          <div><a class="en" href="mailto:Itaybenyair99@gmail.com">Itaybenyair99@gmail.com</a></div>
+          <div><a class="en" href="tel:+972502307500">050-230-7500</a></div>
         </div>
         <div class="socials">
           <a class="social" href="#contact">Instagram</a>

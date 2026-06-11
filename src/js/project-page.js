@@ -102,7 +102,7 @@
   const navCard = (proj, dir) => `
 <a class="pp-nav-card glass ${dir}" href="/project.html?id=${encodeURIComponent(proj.id)}">
   ${dir === 'next' ? `<div><div class="pp-nav-dir">המשימה הבאה ←</div><div class="pp-nav-name">${esc(proj.name)}</div></div>` : ''}
-  <span class="mission-logo glass"><img src="${esc(proj.logo)}" alt="${esc(proj.name)} logo" loading="lazy"></span>
+  <span class="mission-logo glass${proj.logoLight ? ' logo-light' : ''}"><img src="${esc(proj.logo)}" alt="${esc(proj.name)} logo" loading="lazy"></span>
   ${dir === 'prev' ? `<div><div class="pp-nav-dir">→ המשימה הקודמת</div><div class="pp-nav-name">${esc(proj.name)}</div></div>` : ''}
 </a>`;
 
@@ -110,7 +110,7 @@
   root.innerHTML = `
 <section class="pp-hero" data-screen-label="${esc(p.code)} Hero">
   <div class="wrap">
-    <div class="pp-logo reveal reveal-zoom" style="--d: 0.05s;"><img src="${esc(p.logo)}" alt="${esc(p.name)} logo"></div>
+    <div class="pp-logo reveal reveal-zoom${p.logoLight ? ' logo-light' : ''}" style="--d: 0.05s;"><img src="${esc(p.logo)}" alt="${esc(p.name)} logo"></div>
     <div class="kicker pp-kicker reveal" style="--d: 0.15s;">${esc(CAT_LABEL[p.cat])} · ${esc(p.code)}</div>
     <h1 class="pp-title reveal" style="--d: 0.2s;">${esc(p.name)}</h1>
     <div class="pp-he reveal" style="--d: 0.28s;">${esc(p.heName)}</div>

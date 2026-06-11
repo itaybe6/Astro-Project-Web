@@ -15,7 +15,7 @@
     feats.slice(0, max).map((f) => `<span class="chip">${esc(f)}</span>`).join('');
 
   const logoBadge = (p) =>
-    `<span class="mission-logo glass"><img src="${esc(p.logo)}" alt="${esc(p.name)} logo" loading="lazy"></span>`;
+    `<span class="mission-logo glass${p.logoLight ? ' logo-light' : ''}"><img src="${esc(p.logo)}" alt="${esc(p.name)} logo" loading="lazy"></span>`;
 
   /* Compact animated stats strip inside each mission card */
   const miniStats = (p) =>
@@ -65,9 +65,6 @@
     <p class="mission-desc">${esc(p.desc)}</p>
     <div class="chips">${chipsHtml(p.features, 4)}</div>
     ${miniStats(p)}
-    <div class="mission-actions">
-      <a class="btn btn-primary btn-sm" href="${pageFor(p)}">צללו לעמוד המשימה</a>
-    </div>
   </div>
 </article>`;
   }
@@ -119,9 +116,6 @@
     <p class="mission-desc">${esc(p.desc)}</p>
     <div class="chips">${chipsHtml(p.features, 4)}</div>
     ${miniStats(p)}
-    <div class="mission-actions">
-      <a class="btn btn-primary btn-sm" href="${pageFor(p)}">צללו לעמוד המשימה</a>
-    </div>
   </div>
 </article>`;
   }
@@ -131,29 +125,42 @@
     const videoChips = p.videos.map((v, i) =>
       `<button class="tori-video-chip ${i === 0 ? 'active' : ''}" type="button" data-video="${esc(v.src)}">${esc(v.label)}</button>`
     ).join('');
-    const stats = p.stats.map((s) => `
-      <div class="tori-stat">
-        <div class="stat-num"><span>${esc(s.num)}</span>${s.suffix ? `<span class="suffix">${esc(s.suffix)}</span>` : ''}</div>
+    const stats = p.stats.map((s, i) => `
+      <div class="tori-stat reveal" style="--d: ${(0.15 + i * 0.08).toFixed(2)}s;">
+        <div class="stat-num en"><span data-count="${esc(s.num)}">0</span>${s.suffix ? `<span class="suffix">${esc(s.suffix)}</span>` : ''}</div>
         <div class="stat-label">${esc(s.label)}</div>
       </div>`).join('');
     return `
 <div class="tori-panel glass reveal reveal-zoom">
+  <div class="tori-aurora" aria-hidden="true"></div>
+  <div class="tori-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+
   <div class="tori-copy">
+    <div class="tori-status">
+      <span class="tori-live en"><i></i>LIVE IN STORES</span>
+      <span class="tori-code en">${esc(p.code)} · THE MOTHERSHIP</span>
+    </div>
+
     <div class="tori-head">
-      ${logoBadge(p)}
-      <div>
-        <h3 class="mission-name">${esc(p.name)}</h3>
+      <span class="tori-applogo"><img src="${esc(p.logo)}" alt="${esc(p.name)} logo" loading="lazy"></span>
+      <div class="tori-title">
+        <h3 class="tori-name en">${esc(p.name)}</h3>
+        <div class="tori-he-name">${esc(p.heName)}</div>
       </div>
     </div>
-    <p class="mission-desc" style="max-width: none;">${esc(p.desc)}</p>
+
+    <p class="tori-tagline">${esc(p.tagline)}</p>
+    <p class="mission-desc tori-desc">${esc(p.desc)}</p>
     <div class="chips">${chipsHtml(p.features, 6)}</div>
     <div class="tori-stats">${stats}</div>
     <div class="mission-actions">
-      <a class="btn btn-primary" href="${pageFor(p)}">לעמוד Tori המלא</a>
+      <a class="btn btn-primary tori-btn" href="${pageFor(p)}">לעמוד Tori המלא</a>
       <a class="btn btn-ghost" href="#contact">אני רוצה אפליקציה לעסק</a>
     </div>
   </div>
+
   <div class="tori-demo">
+    <span class="tori-badge-72"><b class="en">72H</b>מהרעיון לחנויות</span>
     <div class="fleet-stage tori-stage">
       ${phone(`<img class="shot-img" src="${esc(p.shots[1].src)}" alt="${esc(p.shots[1].alt)}" loading="lazy">`, 'back lean-l', '-3s')}
       ${phone(`<video id="tori-video" src="${esc(p.videos[0].src)}" autoplay muted loop playsinline preload="metadata"></video>`, 'tilt')}
@@ -168,8 +175,7 @@
   function clientsMarquee() {
     const item = (p) => `
 <a class="marquee-item" href="${pageFor(p)}" aria-label="${esc(p.name)}">
-  <img src="${esc(p.logo)}" alt="${esc(p.name)} logo" loading="lazy">
-  <span class="marquee-name en">${esc(p.name)}</span>
+  <img ${p.logoLight ? 'class="logo-light" ' : ''}src="${esc(p.logo)}" alt="${esc(p.name)} logo" loading="lazy">
 </a>`;
     const items = ALL.map(item).join('');
     /* content duplicated for a seamless infinite loop */

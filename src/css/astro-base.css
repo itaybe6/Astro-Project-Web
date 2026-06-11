@@ -86,6 +86,67 @@ body {
   pointer-events: none;
 }
 
+/* ---------- Shooting stars (whole page) ----------
+   Each <i> is a glowing meteor head + gradient tail.
+   Position, angle, speed, delay & color come from inline CSS vars:
+   --t (top) --l (left) --ang --dur --d (delay) --c (r,g,b) */
+.shooting-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  direction: ltr; /* physical coordinates for flight paths */
+}
+
+.shooting-stars i {
+  position: absolute;
+  top: var(--t, 10%);
+  left: var(--l, 0%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.9),
+    0 0 14px rgba(var(--c, 139, 233, 255), 0.9),
+    0 0 30px rgba(var(--c, 139, 233, 255), 0.45);
+  opacity: 0;
+  transform: rotate(var(--ang, 30deg)) translateX(0);
+  animation: star-fall var(--dur, 8s) linear infinite;
+  animation-delay: var(--d, 0s);
+  will-change: transform, opacity;
+}
+
+/* the tail trails behind the head */
+.shooting-stars i::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1px;
+  transform: translateY(-50%);
+  width: clamp(110px, 16vw, 190px);
+  height: 1.8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(var(--c, 139, 233, 255), 0.55) 55%,
+    rgba(255, 255, 255, 0.95));
+}
+
+/* travels along its rotated axis, visible only for the first third */
+@keyframes star-fall {
+  0% { transform: rotate(var(--ang, 30deg)) translateX(0); opacity: 0; }
+  2% { opacity: 1; }
+  30% { opacity: 1; }
+  38% { transform: rotate(var(--ang, 30deg)) translateX(135vmax); opacity: 0; }
+  100% { transform: rotate(var(--ang, 30deg)) translateX(135vmax); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shooting-stars { display: none; }
+}
+
 .nebula {
   position: fixed;
   inset: -20%;
