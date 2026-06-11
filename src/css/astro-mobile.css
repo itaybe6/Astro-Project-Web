@@ -13,12 +13,7 @@
     transform: none;
   }
 
-  .process-step:hover {
-    transform: none;
-    box-shadow: none;
-  }
-
-  .process-step:hover .process-icon { transform: none; }
+  .flight-card:hover { transform: none; }
 }
 
 /* ---------- Performance: lighter background effects on phones ---------- */
@@ -118,13 +113,11 @@
   .shot-peek { width: 36%; bottom: -7%; }
   .fleet-stage .phone { width: min(220px, 58vw); }
 
-  /* --- process --- */
-  .process-note {
-    text-align: center;
-    justify-content: center;
-  }
-
-  .process-note .btn { width: 100%; }
+  /* --- process / flight plan --- */
+  .flight-note .btn { width: 100%; }
+  .flight-card { padding: 20px 18px; }
+  .flight-head { flex-wrap: wrap; gap: 6px 12px; }
+  .flight-name { font-size: 19px; }
 
   /* --- tori --- */
   .tori-panel { padding: 24px 18px; }

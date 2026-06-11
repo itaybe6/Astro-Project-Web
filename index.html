@@ -41,7 +41,7 @@
     <nav>
       <ul class="nav-links" id="nav-links">
         <li><a href="#mobile">צי המובייל</a></li>
-        <li><a href="#web">משימות רשת</a></li>
+        <li><a href="#web">מערכות תוכנה</a></li>
         <li><a href="#tori">ספינת האם</a></li>
         <li><a href="#process">איך זה עובד</a></li>
         <li><a href="#crew">הצוות</a></li>
@@ -106,13 +106,13 @@
   </section>
 
   <!-- ======================= WEB MISSIONS ======================= -->
-  <section id="web" data-screen-label="Web Missions">
+  <section id="web" data-screen-label="Software Systems">
     <div class="bg-planet bg-planet--ice" aria-hidden="true" style="--size: clamp(120px, 14vw, 200px); --o: 0.65; --drift: 21s; inset-inline-end: clamp(-100px, -5vw, -36px); top: 55%;"></div>
     <div class="wrap">
       <div class="section-head center reveal">
-        <div class="kicker">Web Missions</div>
-        <h2 class="section-title">משימות רשת</h2>
-        <p class="section-sub">מערכות ואתרים שבנינו ללקוחות אמיתיים — כל אחד פתר בעיה אמיתית ושינה עסק שלם. לחצו על משימה כדי לצלול פנימה.</p>
+        <div class="kicker">Software Systems</div>
+        <h2 class="section-title">מערכות תוכנה</h2>
+        <p class="section-sub">מערכות ואתרים שבנינו ללקוחות אמיתיים — כל אחד פתר בעיה אמיתית ושינה עסק שלם. לחצו על מערכת כדי לצלול פנימה.</p>
       </div>
       <div id="web-missions"><!-- rendered by astro-projects.js --></div>
     </div>
@@ -141,76 +141,111 @@
         <p class="section-sub">ככה הופכים רעיון למוצר חי — בחמישה שלבים פשוטים, בלי הפתעות ובלי מילים מסובכות.</p>
       </div>
 
-      <div class="process-track">
-        <div class="process-line" aria-hidden="true"></div>
-
-        <div class="process-step glass reveal" style="--d: 0s;">
-          <div class="process-top">
-            <span class="process-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.4-.25-3.4-.7L3 21l1.7-5.1A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 10.5h7M8.5 13.5h4"/></svg>
-            </span>
-            <span class="process-tag">יום 1</span>
-          </div>
-          <div class="process-num en">01</div>
-          <h3 class="process-name">שיחת היכרות</h3>
-          <p class="process-desc">נפגשים, מקשיבים ומבינים מה העסק שלכם באמת צריך. בלי התחייבות — רק הקשבה.</p>
-          <div class="process-get">תוכנית פעולה ברורה תוך 24 שעות</div>
+      <div class="flight" id="flight">
+        <div class="flight-rail" aria-hidden="true">
+          <span class="flight-burn"></span>
+          <span class="flight-rocket">
+            <span class="flight-flame"></span>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 1.6c3.1 2.1 4.9 5.6 4.9 9.3 0 2-.5 4-1.4 5.7H8.5a12.7 12.7 0 0 1-1.4-5.7c0-3.7 1.8-7.2 4.9-9.3z"/>
+              <circle cx="12" cy="9.6" r="1.9" fill="#070818"/>
+              <path d="M8.3 13.4 5.2 17.8l3.6-1zM15.7 13.4l3.1 4.4-3.6-1z"/>
+            </svg>
+          </span>
         </div>
 
-        <div class="process-step glass reveal" style="--d: 0.1s;">
-          <div class="process-top">
-            <span class="process-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l3.8-1 11.4-11.4a1.8 1.8 0 0 0 0-2.6l-.2-.2a1.8 1.8 0 0 0-2.6 0L4 17.2 3 21z"/><path d="M13.5 6.5l4 4"/></svg>
-            </span>
-            <span class="process-tag">שבוע 1</span>
+        <article class="flight-stage">
+          <div class="flight-card reveal reveal-end">
+            <header class="flight-head en">
+              <span class="flight-code">STG-01 <em>//</em> CONTACT</span>
+              <span class="flight-status"><i></i><span class="st-wait">STANDBY</span><span class="st-go">GO</span></span>
+            </header>
+            <h3 class="flight-name">שיחת היכרות</h3>
+            <p class="flight-desc">נפגשים, מקשיבים ומבינים מה העסק שלכם באמת צריך. בלי התחייבות — רק הקשבה.</p>
+            <div class="flight-meta">
+              <span class="flight-when">יום 1</span>
+              <span class="flight-get">תוכנית פעולה ברורה תוך 24 שעות</span>
+            </div>
           </div>
-          <div class="process-num en">02</div>
-          <h3 class="process-name">תוכנית ועיצוב</h3>
-          <p class="process-desc">מתכננים יחד את המסכים והחוויה. אתם רואים בדיוק איך הכול ייראה — לפני שבנינו משהו.</p>
-          <div class="process-get">הדמיה חיה של המוצר שלכם</div>
-        </div>
+          <div class="flight-node" aria-hidden="true"><i></i></div>
+          <div class="flight-ghost en" aria-hidden="true">01</div>
+        </article>
 
-        <div class="process-step glass reveal" style="--d: 0.2s;">
-          <div class="process-top">
-            <span class="process-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5l3 3L8 19l-4 1 1-4 9.5-9.5z"/><path d="M16 3l2-1 4 4-1 2"/><path d="M19 8l-3-3"/></svg>
-            </span>
-            <span class="process-tag">עדכון בכל שבוע</span>
+        <article class="flight-stage">
+          <div class="flight-card reveal reveal-start">
+            <header class="flight-head en">
+              <span class="flight-code">STG-02 <em>//</em> BLUEPRINT</span>
+              <span class="flight-status"><i></i><span class="st-wait">STANDBY</span><span class="st-go">GO</span></span>
+            </header>
+            <h3 class="flight-name">תוכנית ועיצוב</h3>
+            <p class="flight-desc">מתכננים יחד את המסכים והחוויה. אתם רואים בדיוק איך הכול ייראה — לפני שבנינו משהו.</p>
+            <div class="flight-meta">
+              <span class="flight-when">שבוע 1</span>
+              <span class="flight-get">הדמיה חיה של המוצר שלכם</span>
+            </div>
           </div>
-          <div class="process-num en">03</div>
-          <h3 class="process-name">בנייה</h3>
-          <p class="process-desc">הצוות שלנו בונה, ואתם מקבלים הצצות חיות לאורך כל הדרך. שום דבר לא קורה מאחורי הגב.</p>
-          <div class="process-get">גרסה חיה לנסות בכל שלב</div>
-        </div>
+          <div class="flight-node" aria-hidden="true"><i></i></div>
+          <div class="flight-ghost en" aria-hidden="true">02</div>
+        </article>
 
-        <div class="process-step glass reveal" style="--d: 0.3s;">
-          <div class="process-top">
-            <span class="process-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c2.8 1.8 4.5 5.2 4.5 8.8l2.5 3.4-3.4-.6c-1 1.3-6.2 1.3-7.2 0l-3.4.6 2.5-3.4c0-3.6 1.7-7 4.5-8.8z"/><circle cx="12" cy="9.5" r="1.7"/><path d="M9.5 18.5L8 22M14.5 18.5L16 22M12 19v3.5"/></svg>
-            </span>
-            <span class="process-tag">יום ההשקה</span>
+        <article class="flight-stage">
+          <div class="flight-card reveal reveal-end">
+            <header class="flight-head en">
+              <span class="flight-code">STG-03 <em>//</em> ASSEMBLY</span>
+              <span class="flight-status"><i></i><span class="st-wait">STANDBY</span><span class="st-go">GO</span></span>
+            </header>
+            <h3 class="flight-name">בנייה</h3>
+            <p class="flight-desc">הצוות שלנו בונה, ואתם מקבלים הצצות חיות לאורך כל הדרך. שום דבר לא קורה מאחורי הגב.</p>
+            <div class="flight-meta">
+              <span class="flight-when">עדכון בכל שבוע</span>
+              <span class="flight-get">גרסה חיה לנסות בכל שלב</span>
+            </div>
           </div>
-          <div class="process-num en">04</div>
-          <h3 class="process-name">שיגור</h3>
-          <p class="process-desc">המערכת עולה לאוויר — בודקים הכול יחד, מלמדים את הצוות שלכם, ולוחצים על הכפתור.</p>
-          <div class="process-get">מוצר חי + הדרכה מלאה לצוות</div>
-        </div>
+          <div class="flight-node" aria-hidden="true"><i></i></div>
+          <div class="flight-ghost en" aria-hidden="true">03</div>
+        </article>
 
-        <div class="process-step glass reveal" style="--d: 0.4s;">
-          <div class="process-top">
-            <span class="process-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v4a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2z" fill="currentColor" stroke="none"/><path d="M20 13v4a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2z" fill="currentColor" stroke="none"/><path d="M17 19.5c0 1.4-1.6 2-3.5 2"/></svg>
-            </span>
-            <span class="process-tag">תמיד כאן</span>
+        <article class="flight-stage">
+          <div class="flight-card reveal reveal-start">
+            <header class="flight-head en">
+              <span class="flight-code">STG-04 <em>//</em> LIFTOFF</span>
+              <span class="flight-status"><i></i><span class="st-wait">STANDBY</span><span class="st-go">GO</span></span>
+            </header>
+            <h3 class="flight-name">שיגור</h3>
+            <p class="flight-desc">המערכת עולה לאוויר — בודקים הכול יחד, מלמדים את הצוות שלכם, ולוחצים על הכפתור.</p>
+            <div class="flight-meta">
+              <span class="flight-when">יום ההשקה</span>
+              <span class="flight-get">מוצר חי + הדרכה מלאה לצוות</span>
+            </div>
           </div>
-          <div class="process-num en">05</div>
-          <h3 class="process-name">ליווי מתמשך</h3>
-          <p class="process-desc">אנחנו נשארים איתכם גם אחרי ההשקה: שיפורים, תוספות ותמיכה — כמו צוות פנימי משלכם.</p>
-          <div class="process-get">שקט נפשי — אנחנו על זה</div>
-        </div>
+          <div class="flight-node" aria-hidden="true"><i></i></div>
+          <div class="flight-ghost en" aria-hidden="true">04</div>
+        </article>
+
+        <article class="flight-stage">
+          <div class="flight-card reveal reveal-end">
+            <header class="flight-head en">
+              <span class="flight-code">STG-05 <em>//</em> ORBIT</span>
+              <span class="flight-status"><i></i><span class="st-wait">STANDBY</span><span class="st-go">GO</span></span>
+            </header>
+            <h3 class="flight-name">ליווי מתמשך</h3>
+            <p class="flight-desc">אנחנו נשארים איתכם גם אחרי ההשקה: שיפורים, תוספות ותמיכה — כמו צוות פנימי משלכם.</p>
+            <div class="flight-meta">
+              <span class="flight-when">תמיד כאן</span>
+              <span class="flight-get">שקט נפשי — אנחנו על זה</span>
+            </div>
+          </div>
+          <div class="flight-node" aria-hidden="true"><i></i></div>
+          <div class="flight-ghost en" aria-hidden="true">05</div>
+        </article>
       </div>
 
-      <div class="process-note glass reveal" style="--d: 0.5s;">
+      <div class="flight-note reveal" style="--d: 0.1s;">
+        <div class="flight-orbit" aria-hidden="true">
+          <span class="fo-planet"></span>
+          <span class="fo-ring"><i></i></span>
+        </div>
+        <div class="fo-status en">MISSION STATUS <em>//</em> IN ORBIT</div>
         <p><strong>זהו. חמישה שלבים, בלי מילים מסובכות ובלי הפתעות.</strong><br>אתם מביאים את הרעיון — אנחנו דואגים לכל השאר.</p>
         <a class="btn btn-primary" href="#contact">מתחילים בשיחה</a>
       </div>

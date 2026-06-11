@@ -30,10 +30,20 @@
   /* ---------- Web missions: layered browser mockup + copy ---------- */
   function webMission(p, i) {
     const flip = i % 2 === 1;
-    const shot = p.shots[0];
-    const peek = p.shots[1];
+    const shots = (p.shots && p.shots.length) ? p.shots : [];
+    /* every screenshot becomes a crossfading slide so the whole system is shown */
+    const slidesHtml = shots.map((s, idx) =>
+      `<img class="shot-img shot-slide${idx === 0 ? ' is-active' : ''}" src="${esc(s.src)}" alt="${esc(s.alt)}" loading="${idx === 0 ? 'eager' : 'lazy'}">`
+    ).join('');
+    const dotsHtml = shots.length > 1
+      ? `<span class="shot-dots" aria-hidden="true">${shots.map((_, idx) =>
+          `<i class="shot-dot${idx === 0 ? ' is-active' : ''}"></i>`).join('')}</span>`
+      : '';
+    /* the peek thumbnail rotates one step ahead of the main slide */
+    const peek = shots[1] || shots[0];
     const peekHtml = peek
-      ? `<span class="shot-peek glass" aria-hidden="true"><img src="${esc(peek.src)}" alt="" loading="lazy"></span>`
+      ? `<span class="shot-peek glass" aria-hidden="true">${shots.map((s, idx) =>
+          `<img class="shot-peek-slide${idx === 1 || (shots.length === 1 && idx === 0) ? ' is-active' : ''}" src="${esc(s.src)}" alt="" loading="lazy">`).join('')}</span>`
       : '';
     return `
 <article class="mission ${flip ? 'flip' : ''}" data-screen-label="${esc(p.code)} ${esc(p.name)}">
@@ -47,8 +57,9 @@
           <div class="url-pill">${esc(p.url)}</div>
         </div>
         <div class="browser-screen">
-          <img class="shot-img" src="${esc(shot.src)}" alt="${esc(shot.alt)}" loading="lazy">
-          <span class="shot-overlay"><span class="shot-overlay-text">לעמוד המשימה ←</span></span>
+          <div class="shot-slides" data-shot-rotator>${slidesHtml}</div>
+          ${dotsHtml}
+          <span class="shot-overlay"><span class="shot-overlay-text">לעמוד המערכת ←</span></span>
         </div>
       </a>
     </div>
@@ -195,6 +206,37 @@
   const clientsRoot2 = document.getElementById('clients-strip-2');
 
   if (webRoot) webRoot.innerHTML = ALL.filter((p) => p.cat === 'web').map(webMission).join('');
+
+  /* ---------- Auto-rotating screenshots inside each web mockup ---------- */
+  function startShotRotators(root) {
+    if (!root) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    root.querySelectorAll('[data-shot-rotator]').forEach((rot, k) => {
+      const slides = Array.from(rot.querySelectorAll('.shot-slide'));
+      if (slides.length < 2) return;
+      const screen = rot.closest('.browser-screen');
+      const dots = screen ? Array.from(screen.querySelectorAll('.shot-dot')) : [];
+      const stack = rot.closest('.shot-stack');
+      const peeks = stack ? Array.from(stack.querySelectorAll('.shot-peek-slide')) : [];
+      let idx = 0;
+      const setActive = (next) => {
+        slides[idx].classList.remove('is-active');
+        if (dots[idx]) dots[idx].classList.remove('is-active');
+        if (peeks[(idx + 1) % slides.length]) peeks[(idx + 1) % slides.length].classList.remove('is-active');
+        idx = next;
+        slides[idx].classList.add('is-active');
+        if (dots[idx]) dots[idx].classList.add('is-active');
+        if (peeks[(idx + 1) % slides.length]) peeks[(idx + 1) % slides.length].classList.add('is-active');
+      };
+      /* stagger so the cards don't all flip in unison */
+      setTimeout(() => {
+        setInterval(() => setActive((idx + 1) % slides.length), 3600);
+      }, k * 900);
+    });
+  }
+  startShotRotators(webRoot);
+
   if (mobRoot) mobRoot.innerHTML = ALL.filter((p) => p.cat === 'mobile').map(mobileMission).join('');
   const tori = ALL.find((p) => p.cat === 'saas');
   if (toriRoot && tori) toriRoot.innerHTML = toriSpotlight(tori);

@@ -6,14 +6,24 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "remotion:studio": "remotion studio",
+    "remotion:render": "remotion render src/videos/index.tsx MyVideo output.mp4"
   },
   "dependencies": {
+    "@remotion/cli": "^4.0.475",
+    "@remotion/google-fonts": "^4.0.475",
+    "@remotion/renderer": "^4.0.475",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.475",
+    "three": "^0.184.0"
   },
   "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^6.0.3",
     "vite": "^6.0.3"
   }
 }

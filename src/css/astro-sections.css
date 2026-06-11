@@ -434,173 +434,413 @@ section.clients-band {
   .marquee-track { animation: none; }
 }
 
-/* ====================== PROCESS — FLIGHT PLAN ====================== */
-.process-track {
+/* ====================== PROCESS — FLIGHT PLAN ======================
+   Mission-control trajectory: a rocket rides a central rail as you
+   scroll, igniting each checkpoint console it passes.
+   JS (astro-flight.js) drives --p (0..1) and the .passed classes. */
+.flight {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: clamp(14px, 2vw, 24px);
+  --rail-w: clamp(64px, 9vw, 110px);
 }
 
-.process-line {
+/* ---------- central trajectory rail ---------- */
+.flight-rail {
   position: absolute;
-  top: 50%;
-  inset-inline: 4%;
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--accent-1-glow), var(--accent-2-glow), var(--accent-1-glow));
-  opacity: 0.45;
-  z-index: -1;
+  top: 6px;
+  bottom: 6px;
+  inset-inline-start: 50%;
+  margin-inline-start: -1px;
+  width: 2px;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg,
+    rgba(255, 255, 255, 0.18) 0 5px,
+    transparent 5px 13px);
 }
 
-/* comet traveling along the flight path */
-.process-line::after {
+/* altitude ticks along the route */
+.flight-rail::before {
   content: "";
   position: absolute;
-  top: -4px;
+  top: 0;
+  bottom: 0;
+  left: -6px;
+  width: 14px;
+  background: repeating-linear-gradient(180deg,
+    rgba(255, 255, 255, 0.12) 0 1.5px,
+    transparent 1.5px 64px);
+}
+
+/* the part of the trajectory already burned through */
+.flight-burn {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: calc(var(--p, 0) * 100%);
+  background: linear-gradient(180deg, var(--accent-2), var(--accent-1));
+  box-shadow: 0 0 10px var(--accent-1-glow), 0 0 30px var(--accent-2-glow);
+}
+
+/* ---------- the rocket riding the line ---------- */
+.flight-rocket {
+  position: absolute;
+  top: calc(var(--p, 0) * 100%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  filter:
+    drop-shadow(0 0 10px var(--accent-1-glow))
+    drop-shadow(0 0 28px var(--accent-2-glow));
+}
+
+.flight-rocket svg {
+  width: 30px;
+  height: 30px;
+  rotate: 180deg; /* nose toward direction of travel */
+  position: relative;
+  z-index: 1;
+  animation: rocket-sway 2.4s ease-in-out infinite;
+}
+
+@keyframes rocket-sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+/* exhaust plume trailing behind */
+.flight-flame {
+  position: absolute;
+  bottom: calc(50% + 11px);
+  left: 50%;
+  translate: -50%;
   width: 9px;
-  height: 9px;
-  border-radius: 50%;
+  height: 30px;
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  background: linear-gradient(to top, #fff, var(--accent-1) 30%, var(--accent-2) 62%, transparent 92%);
+  filter: blur(1.5px);
+  transform-origin: bottom;
+  animation: flame-flicker 0.22s ease-in-out infinite alternate;
+}
+
+@keyframes flame-flicker {
+  from { transform: scaleY(0.72) scaleX(0.88); opacity: 0.85; }
+  to { transform: scaleY(1.18) scaleX(1.06); opacity: 1; }
+}
+
+/* before liftoff / reduced motion */
+.flight.no-motion .flight-rocket { display: none; }
+
+/* ---------- stages: card | node | ghost number ---------- */
+.flight-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr var(--rail-w) 1fr;
+  align-items: center;
+}
+
+.flight-stage + .flight-stage { margin-top: clamp(30px, 4.5vw, 56px); }
+
+.flight-card { grid-column: 1; grid-row: 1; }
+.flight-node { grid-column: 2; grid-row: 1; }
+.flight-ghost { grid-column: 3; grid-row: 1; }
+
+.flight-stage:nth-of-type(even) .flight-card { grid-column: 3; }
+.flight-stage:nth-of-type(even) .flight-ghost { grid-column: 1; }
+
+/* ---------- checkpoint node + dashed connector ---------- */
+.flight-node {
+  position: relative;
+  align-self: center;
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg,
+    rgba(255, 255, 255, 0.14) 0 6px,
+    transparent 6px 13px);
+}
+
+.flight-node i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 13px;
+  height: 13px;
+  rotate: 45deg; /* diamond waypoint */
+  background: var(--bg-1);
+  border: 1.5px solid rgba(255, 255, 255, 0.38);
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.flight-stage.passed .flight-node i {
   background: var(--accent-1);
-  box-shadow: 0 0 12px var(--accent-1), 0 0 30px var(--accent-1-glow);
-  animation: comet-travel 7s linear infinite;
+  border-color: #fff;
+  box-shadow: 0 0 14px var(--accent-1), 0 0 36px var(--accent-1-glow);
 }
 
-@keyframes comet-travel {
-  from { inset-inline-start: -1%; opacity: 0; }
-  8% { opacity: 1; }
-  92% { opacity: 1; }
-  to { inset-inline-start: 100%; opacity: 0; }
+/* one-shot radar ping when the rocket passes */
+.flight-node::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 13px;
+  height: 13px;
+  rotate: 45deg;
+  border: 1.5px solid var(--accent-1);
+  opacity: 0;
+  pointer-events: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .process-line::after { animation: none; opacity: 0; }
+.flight-stage.passed .flight-node::after {
+  animation: node-ping 0.9s var(--ease-out) forwards;
 }
 
-.process-step {
-  display: flex;
-  flex-direction: column;
-  padding: 24px 22px 22px;
-  border-radius: 18px;
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s ease;
+@keyframes node-ping {
+  from { opacity: 0.9; scale: 1; }
+  to { opacity: 0; scale: 3.6; }
 }
 
-.process-step:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), 0 0 40px var(--accent-2-glow);
+/* ---------- mission console card ---------- */
+.flight-card {
+  position: relative;
+  z-index: 1;
+  padding: 22px 26px 22px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px) 0 0 / 100% 26px,
+    linear-gradient(165deg, rgba(16, 18, 44, 0.88), rgba(7, 8, 22, 0.93));
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.45s ease, box-shadow 0.45s ease, transform 0.35s var(--ease-out);
 }
 
-.process-top {
+/* HUD corner brackets */
+.flight-card::before,
+.flight-card::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0.45;
+  transition: opacity 0.45s ease, filter 0.45s ease;
+  pointer-events: none;
+}
+
+.flight-card::before {
+  top: -1px;
+  inset-inline-start: -1px;
+  border-top: 2px solid var(--accent-1);
+  border-inline-start: 2px solid var(--accent-1);
+}
+
+.flight-card::after {
+  bottom: -1px;
+  inset-inline-end: -1px;
+  border-bottom: 2px solid var(--accent-2);
+  border-inline-end: 2px solid var(--accent-2);
+}
+
+.flight-card:hover { transform: translateY(-4px); }
+
+.flight-stage.passed .flight-card {
+  border-color: color-mix(in srgb, var(--accent-1) 32%, rgba(255, 255, 255, 0.1));
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.45), 0 0 34px var(--accent-2-glow);
+}
+
+.flight-stage.passed .flight-card::before,
+.flight-stage.passed .flight-card::after {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px var(--accent-1-glow));
+}
+
+/* telemetry header */
+.flight-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 18px;
+  gap: 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
 }
 
-.process-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 13px;
-  display: grid;
-  place-items: center;
+.flight-code { white-space: nowrap; }
+
+.flight-code em,
+.fo-status em {
+  font-style: normal;
   color: var(--accent-1);
-  background: color-mix(in srgb, var(--accent-2) 13%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent-2) 32%, transparent);
-  box-shadow: 0 0 20px var(--accent-2-glow);
-  transition: transform 0.35s var(--ease-out);
+  text-shadow: 0 0 12px var(--accent-1-glow);
 }
 
-.process-step:hover .process-icon { transform: scale(1.12) rotate(-6deg); }
+.flight-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
 
-.process-icon svg { width: 23px; height: 23px; }
+.flight-status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
 
-.process-tag {
+.flight-status .st-go { display: none; color: oklch(0.85 0.18 150); }
+
+.flight-stage.passed .flight-status .st-wait { display: none; }
+.flight-stage.passed .flight-status .st-go { display: inline; }
+
+.flight-stage.passed .flight-status i {
+  background: oklch(0.8 0.2 150);
+  box-shadow: 0 0 10px oklch(0.8 0.2 150 / 0.85);
+  animation: go-pulse 2s ease-in-out infinite;
+}
+
+@keyframes go-pulse {
+  50% { box-shadow: 0 0 18px oklch(0.8 0.2 150 / 0.9); }
+}
+
+.flight-name { font-size: 21px; }
+
+.flight-desc {
+  margin-top: 9px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-dim);
+}
+
+.flight-meta {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.flight-when {
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--ink-dim);
-  padding: 5px 13px;
+  padding: 4px 13px;
   border-radius: 999px;
   border: 1px solid var(--glass-stroke);
   background: rgba(255, 255, 255, 0.03);
   white-space: nowrap;
 }
 
-.process-num {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-family: var(--font-display);
-  direction: ltr;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  color: var(--accent-1);
-  text-shadow: 0 0 16px var(--accent-1-glow);
-}
-
-.process-num::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, var(--accent-1), var(--accent-2));
-  box-shadow: 0 0 12px var(--accent-1-glow);
-}
-
-.process-name {
-  font-size: 19px;
-  margin-top: 12px;
-}
-
-.process-desc {
-  font-size: 14.5px;
-  color: var(--ink-dim);
-  margin-top: 10px;
-  line-height: 1.65;
-  flex: 1;
-}
-
-/* "what you get" line at the bottom of each step */
-.process-get {
-  margin-top: 16px;
-  padding-top: 13px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+.flight-get {
   font-size: 13px;
   font-weight: 600;
   color: var(--accent-1);
-  display: flex;
-  align-items: flex-start;
+  display: inline-flex;
+  align-items: baseline;
   gap: 8px;
   line-height: 1.5;
 }
 
-.process-get::before {
+.flight-get::before {
   content: "✓";
   font-weight: 800;
-  flex: 0 0 auto;
   text-shadow: 0 0 12px var(--accent-1-glow);
 }
 
-/* closing reassurance banner */
-.process-note {
-  margin-top: clamp(28px, 4vw, 48px);
-  padding: clamp(22px, 3vw, 36px) clamp(24px, 4vw, 48px);
-  border-radius: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 22px;
-  flex-wrap: wrap;
+/* ---------- giant ghost stage number ---------- */
+.flight-ghost {
+  justify-self: center;
+  font-size: clamp(64px, 9vw, 132px);
+  font-weight: 900;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.09);
+  user-select: none;
+  pointer-events: none;
+  transition: -webkit-text-stroke-color 0.6s ease, filter 0.6s ease;
 }
 
-.process-note p {
+.flight-stage.passed .flight-ghost {
+  -webkit-text-stroke-color: color-mix(in srgb, var(--accent-1) 45%, transparent);
+  filter: drop-shadow(0 0 18px var(--accent-1-glow));
+}
+
+/* ---------- finale: orbit achieved ---------- */
+.flight-note {
+  margin-top: clamp(40px, 6vw, 68px);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.flight-orbit {
+  position: relative;
+  width: 88px;
+  height: 88px;
+}
+
+.fo-planet {
+  position: absolute;
+  inset: 27px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, var(--accent-1), var(--accent-2) 75%);
+  box-shadow: 0 0 22px var(--accent-1-glow), 0 0 56px var(--accent-2-glow);
+}
+
+.fo-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  animation: orbit-spin 9s linear infinite;
+}
+
+.fo-ring i {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px #fff, 0 0 22px var(--accent-1);
+}
+
+.fo-status {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--ink-faint);
+}
+
+.flight-note p {
   color: var(--ink-dim);
   font-size: 17px;
   line-height: 1.7;
+  max-width: 56ch;
 }
 
-.process-note strong { color: var(--ink); }
+.flight-note strong { color: var(--ink); }
+
+.flight-note .btn { margin-top: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .flight-rocket svg, .flight-flame, .fo-ring,
+  .flight-stage.passed .flight-node::after,
+  .flight-stage.passed .flight-status i { animation: none; }
+}
 
 /* ====================== MISSION SECTIONS (shared) ====================== */
 .mission {
@@ -1146,8 +1386,26 @@ section.clients-band {
   .crew-grid, .contact-grid { grid-template-columns: 1fr; }
   .planet-wrap { opacity: 0.45; top: 4%; }
   .bg-planet { opacity: calc(var(--o, 0.75) * 0.65); }
-  .process-track { grid-template-columns: repeat(2, 1fr); }
-  .process-line { display: none; }
+
+  /* flight plan: rail moves to the inline-start edge, cards stack */
+  .flight-stage,
+  .flight-stage:nth-of-type(even) { grid-template-columns: 52px 1fr; }
+
+  .flight-card,
+  .flight-stage:nth-of-type(even) .flight-card { grid-column: 2; }
+
+  .flight-node,
+  .flight-stage:nth-of-type(even) .flight-node { grid-column: 1; }
+
+  .flight-ghost { display: none; }
+
+  .flight-rail {
+    inset-inline-start: 25px;
+    margin-inline-start: 0;
+  }
+
+  .flight-rail::before { display: none; }
+  .flight-stage + .flight-stage { margin-top: 26px; }
 
   /* Mobile menu (toggled by .nav-burger) */
   .nav-burger { display: flex; }
@@ -1194,6 +1452,5 @@ section.clients-band {
     text-align: center;
   }
   .hero-ctas .btn { width: 100%; }
-  .process-track { grid-template-columns: 1fr; }
   .mission-index { font-size: 64px; top: 18px; }
 }
