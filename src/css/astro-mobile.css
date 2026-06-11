@@ -1,0 +1,176 @@
+/* ============================================================
+   ASTRO PROJECT — mobile & touch refinements
+   Loaded last. Only overrides for small screens / touch devices,
+   the desktop design is untouched.
+   ============================================================ */
+
+/* ---------- Touch devices: no sticky hover states ---------- */
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-ghost:hover,
+  .marquee-item:hover,
+  .pp-nav-card:hover {
+    transform: none;
+  }
+
+  .process-step:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .process-step:hover .process-icon { transform: none; }
+}
+
+/* ---------- Performance: lighter background effects on phones ---------- */
+@media (max-width: 768px) {
+  .nebula { filter: blur(8px); }
+  .nebula::before { display: none; } /* heavy rotating conic blur layer */
+  .nebula::after { filter: blur(22px); }
+
+  .aurora {
+    filter: blur(24px);
+    opacity: 0.45;
+  }
+
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* the mirror reflection under mockups costs height + repaints */
+  .browser { -webkit-box-reflect: none; }
+}
+
+/* ---------- ≤980px: tablets ---------- */
+@media (max-width: 980px) {
+  .mission { padding-block: clamp(44px, 8vw, 80px); }
+  .tori-demo { width: 100%; }
+}
+
+/* ---------- ≤640px: phones ---------- */
+@media (max-width: 640px) {
+  :root { --nav-h: 60px; }
+
+  .wrap,
+  .nav-inner { width: calc(100% - 32px); }
+
+  body { font-size: 16px; }
+
+  .section-title { font-size: clamp(28px, 8.4vw, 34px); }
+  .section-sub { font-size: 16.5px; }
+  .kicker { font-size: 11.5px; letter-spacing: 0.26em; }
+  .section-head { margin-bottom: 40px; }
+
+  section[data-screen-label]:not(.hero):not(.clients-band) {
+    padding-block: 64px;
+  }
+
+  /* --- nav --- */
+  .logo-img { height: 24px; }
+  .nav-links { gap: 4px; padding: 18px 0 24px; }
+
+  /* --- hero --- */
+  .hero-badge {
+    max-width: calc(100vw - 48px);
+    white-space: normal;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 12px;
+    padding: 8px 16px;
+    margin-bottom: 26px;
+  }
+
+  .hero-tagline {
+    margin-top: 20px;
+    padding-inline: 8px;
+  }
+
+  .hero-ctas { margin-top: 32px; gap: 12px; }
+  .planet-wrap { opacity: 0.3; }
+  .scroll-hint { bottom: 18px; }
+
+  /* --- missions --- */
+  .mission { gap: 32px; }
+
+  .mission-name {
+    font-size: clamp(22px, 6.8vw, 28px);
+    overflow-wrap: anywhere;
+  }
+
+  .mission-head { gap: 13px; }
+  .mission-tagline { font-size: 17px; }
+  .mission-desc { font-size: 15px; }
+  .mission-copy .chips,
+  .mission-copy .tech-row { margin-top: 20px; }
+  .chip { font-size: 12.5px; padding: 6px 13px; }
+
+  .mini-stats {
+    gap: 10px;
+    padding: 13px 14px;
+    margin-top: 20px;
+  }
+
+  .mini-stat + .mini-stat { padding-inline-start: 10px; }
+  .mini-num { font-size: 17px; }
+  .mini-label { font-size: 11.5px; }
+
+  .mission-actions { margin-top: 22px; }
+  .mission-actions .btn { width: 100%; }
+
+  .shot-peek { width: 36%; bottom: -7%; }
+  .fleet-stage .phone { width: min(220px, 58vw); }
+
+  /* --- process --- */
+  .process-note {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .process-note .btn { width: 100%; }
+
+  /* --- tori --- */
+  .tori-panel { padding: 24px 18px; }
+  .tori-stats { gap: 10px; }
+  .tori-stat { padding: 12px 14px; }
+
+  /* --- contact --- */
+  .contact-form .btn { width: 100%; }
+  .socials .social { padding: 9px 16px; font-size: 12px; }
+
+  /* --- footer --- */
+  .footer-inner {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  /* --- project page --- */
+  .pp-back { margin-bottom: 26px; }
+  .pp-hero .chips { gap: 8px; }
+  .pp-nav-card { padding: 18px; gap: 14px; }
+  .pp-video-card { padding: 10px; }
+
+  /* --- lightbox --- */
+  .lightbox { padding: 14px; }
+  .lightbox img { max-height: 76vh; }
+
+  .lightbox-close {
+    top: 14px;
+    inset-inline-end: 14px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .lightbox-caption {
+    bottom: 14px;
+    padding-inline: 56px;
+  }
+}
+
+/* ---------- ≤400px: small phones ---------- */
+@media (max-width: 400px) {
+  .nav-cta .btn-ghost { display: none; }
+  .hero-logo img { width: 92vw; }
+  .mission-index { font-size: 52px; }
+}
