@@ -1,0 +1,99 @@
+<svg width="1080" height="1350" viewBox="0 0 1080 1350" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Astro Project — תיק משימה WEB-06: קירור דן</title>
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&amp;family=Heebo:wght@400;500;700;800;900&amp;display=swap');
+.en{font-family:'Orbitron','Heebo',sans-serif;}
+.he{font-family:'Heebo','Rubik',sans-serif;}
+</style>
+<linearGradient id="bg" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#0a0a1c"/><stop offset="0.5" stop-color="#0c0b22"/><stop offset="1" stop-color="#14122f"/></linearGradient>
+<linearGradient id="head" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#8BE9FF"/><stop offset="0.5" stop-color="#B49BFF"/><stop offset="1" stop-color="#FF93D8"/></linearGradient>
+<linearGradient id="cta" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8BE9FF"/><stop offset="0.55" stop-color="#B49BFF"/><stop offset="1" stop-color="#FF93D8"/></linearGradient>
+<linearGradient id="sel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8BE9FF"/><stop offset="1" stop-color="#B49BFF"/></linearGradient>
+<linearGradient id="phone" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="#1d1d3e"/><stop offset="1" stop-color="#101026"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#100f28"/><stop offset="1" stop-color="#0b0a1e"/></linearGradient>
+<radialGradient id="planet" cx="0.4" cy="0.35" r="0.75"><stop offset="0" stop-color="#2c2658"/><stop offset="0.6" stop-color="#191537"/><stop offset="1" stop-color="#0e0c24"/></radialGradient>
+<radialGradient id="glowC" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#54c8ff" stop-opacity="0.5"/><stop offset="1" stop-color="#54c8ff" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowV" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#9b6eff" stop-opacity="0.45"/><stop offset="1" stop-color="#9b6eff" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowP" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ff78c8" stop-opacity="0.32"/><stop offset="1" stop-color="#ff78c8" stop-opacity="0"/></radialGradient>
+<linearGradient id="shoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8BE9FF" stop-opacity="0"/><stop offset="1" stop-color="#8BE9FF" stop-opacity="0.9"/></linearGradient>
+</defs>
+<rect x="0" y="0" width="1080" height="1350" fill="url(#bg)"/>
+<ellipse cx="430" cy="650" rx="430" ry="420" fill="url(#glowC)"/>
+<ellipse cx="720" cy="860" rx="380" ry="370" fill="url(#glowV)"/>
+<ellipse cx="560" cy="380" rx="360" ry="290" fill="url(#glowP)"/>
+<circle cx="952" cy="150" r="118" fill="url(#planet)"/>
+<ellipse cx="952" cy="150" rx="170" ry="48" fill="none" stroke="#8BE9FF" stroke-width="2" stroke-opacity="0.4" transform="rotate(-22 952 150)"/>
+<ellipse cx="952" cy="150" rx="150" ry="40" fill="none" stroke="#B49BFF" stroke-width="1.5" stroke-opacity="0.3" transform="rotate(-22 952 150)"/>
+<g fill="#ffffff">
+<circle cx="90" cy="120" r="1.6" opacity="0.8"/><circle cx="180" cy="300" r="1.1" opacity="0.6"/><circle cx="60" cy="470" r="1.8" opacity="0.85"/><circle cx="140" cy="640" r="1.2" opacity="0.6"/><circle cx="70" cy="820" r="1.5" opacity="0.7"/><circle cx="200" cy="980" r="1.1" opacity="0.55"/><circle cx="95" cy="1130" r="1.7" opacity="0.8"/><circle cx="250" cy="1250" r="1.2" opacity="0.6"/><circle cx="300" cy="170" r="1.3" opacity="0.7"/><circle cx="420" cy="90" r="1.1" opacity="0.55"/><circle cx="620" cy="120" r="1.5" opacity="0.75"/><circle cx="760" cy="320" r="1.2" opacity="0.6"/><circle cx="1000" cy="430" r="1.6" opacity="0.8"/><circle cx="980" cy="820" r="1.7" opacity="0.8"/><circle cx="840" cy="1240" r="1.2" opacity="0.6"/><circle cx="500" cy="1290" r="1.3" opacity="0.65"/>
+</g>
+<line x1="700" y1="80" x2="900" y2="250" stroke="url(#shoot)" stroke-width="3" stroke-linecap="round"/>
+<circle cx="900" cy="250" r="3.5" fill="#ffffff"/>
+<text x="540" y="112" text-anchor="middle" class="en" font-size="26" font-weight="700" letter-spacing="11" fill="#8BE9FF">ASTRO PROJECT</text>
+<text x="540" y="146" text-anchor="middle" class="he" font-size="17" font-weight="500" fill="#ffffff" fill-opacity="0.55" direction="rtl">תוכנה מעולם אחר</text>
+<rect x="385" y="180" width="310" height="42" rx="21" fill="#ffffff" fill-opacity="0.07" stroke="#8BE9FF" stroke-opacity="0.45" stroke-width="1.3"/>
+<text x="540" y="207" text-anchor="middle" class="en" font-size="16" font-weight="600" letter-spacing="2" fill="#8BE9FF">MISSION FILE · WEB-06</text>
+<text x="540" y="278" text-anchor="middle" class="he" font-size="60" font-weight="900" fill="#ffffff" direction="rtl">קירור דן</text>
+<text x="540" y="336" text-anchor="middle" class="he" font-size="38" font-weight="800" fill="url(#head)" direction="rtl">עסק שלם — במערכת אחת</text>
+<text x="540" y="382" text-anchor="middle" class="he" font-size="23" font-weight="500" fill="#ffffff" fill-opacity="0.7" direction="rtl">מהזמנה ועד אספקה: קטלוג, מלאי, לידים והובלות.</text>
+<g>
+<rect x="180" y="425" width="720" height="440" rx="18" fill="url(#phone)" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
+<rect x="190" y="435" width="700" height="420" rx="12" fill="url(#screen)"/>
+<circle cx="210" cy="453" r="5" fill="#FF93D8" fill-opacity="0.7"/><circle cx="228" cy="453" r="5" fill="#B49BFF" fill-opacity="0.7"/><circle cx="246" cy="453" r="5" fill="#8BE9FF" fill-opacity="0.7"/>
+<text x="876" y="458" text-anchor="end" class="he" font-size="13" fill="#ffffff" fill-opacity="0.5" direction="rtl">kerurdan.online · לוח בקרה</text>
+<rect x="778" y="470" width="100" height="30" rx="8" fill="url(#sel)"/><text x="828" y="490" text-anchor="middle" class="he" font-size="12" font-weight="700" fill="#15103a">דשבורד</text>
+<rect x="778" y="508" width="100" height="30" rx="8" fill="#ffffff" fill-opacity="0.05"/><text x="828" y="528" text-anchor="middle" class="he" font-size="12" fill="#ffffff" fill-opacity="0.55">קטלוג</text>
+<rect x="778" y="546" width="100" height="30" rx="8" fill="#ffffff" fill-opacity="0.05"/><text x="828" y="566" text-anchor="middle" class="he" font-size="12" fill="#ffffff" fill-opacity="0.55">מלאי</text>
+<rect x="778" y="584" width="100" height="30" rx="8" fill="#ffffff" fill-opacity="0.05"/><text x="828" y="604" text-anchor="middle" class="he" font-size="12" fill="#ffffff" fill-opacity="0.55">לידים</text>
+<rect x="778" y="622" width="100" height="30" rx="8" fill="#ffffff" fill-opacity="0.05"/><text x="828" y="642" text-anchor="middle" class="he" font-size="12" fill="#ffffff" fill-opacity="0.55">הובלות</text>
+<rect x="196" y="470" width="170" height="76" rx="10" fill="#ffffff" fill-opacity="0.05"/><text x="352" y="496" text-anchor="end" class="he" font-size="12" fill="#ffffff" fill-opacity="0.5" direction="rtl">הזמנות פתוחות</text><text x="352" y="530" text-anchor="end" class="he" font-size="26" font-weight="800" fill="#8BE9FF">18</text>
+<rect x="382" y="470" width="170" height="76" rx="10" fill="#ffffff" fill-opacity="0.05"/><text x="538" y="496" text-anchor="end" class="he" font-size="12" fill="#ffffff" fill-opacity="0.5" direction="rtl">לידים חדשים</text><text x="538" y="530" text-anchor="end" class="he" font-size="26" font-weight="800" fill="#B49BFF">7</text>
+<rect x="568" y="470" width="170" height="76" rx="10" fill="#ffffff" fill-opacity="0.05"/><text x="724" y="496" text-anchor="end" class="he" font-size="12" fill="#ffffff" fill-opacity="0.5" direction="rtl">הובלות מחר</text><text x="724" y="530" text-anchor="end" class="he" font-size="26" font-weight="800" fill="#FF93D8">5</text>
+<rect x="196" y="566" width="300" height="276" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+<text x="480" y="592" text-anchor="end" class="he" font-size="14" font-weight="700" fill="#ffffff" direction="rtl">סידור משאית בתלת־ממד</text>
+<g stroke="#8BE9FF" stroke-opacity="0.65" stroke-width="1.6" fill="none">
+<rect x="252" y="700" width="150" height="78"/>
+<polygon points="252,700 292,660 442,660 402,700"/>
+<polygon points="402,700 442,660 442,738 402,778"/>
+</g>
+<rect x="262" y="706" width="40" height="30" fill="#FF93D8" fill-opacity="0.85"/>
+<polygon points="262,706 272,696 312,696 302,706" fill="#FF93D8" fill-opacity="0.5"/>
+<rect x="262" y="742" width="40" height="32" fill="#8BE9FF" fill-opacity="0.85"/>
+<polygon points="262,742 272,732 312,732 302,742" fill="#8BE9FF" fill-opacity="0.5"/>
+<rect x="308" y="742" width="40" height="32" fill="#B49BFF" fill-opacity="0.85"/>
+<polygon points="308,742 318,732 358,732 348,742" fill="#B49BFF" fill-opacity="0.5"/>
+<text x="346" y="816" text-anchor="middle" class="he" font-size="12" fill="#ffffff" fill-opacity="0.5" direction="rtl">גוררים מוצרים — רואים מה נכנס</text>
+<rect x="512" y="566" width="242" height="276" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+<text x="746" y="592" text-anchor="end" class="he" font-size="14" font-weight="700" fill="#ffffff" direction="rtl">מפת לקוחות חיה</text>
+<g stroke="#ffffff" stroke-opacity="0.1" stroke-width="9" stroke-linecap="round">
+<path d="M524 660 L744 660"/>
+<path d="M612 606 L612 830"/>
+</g>
+<circle cx="585" cy="690" r="8" fill="#FF93D8"/><polygon points="579,695 585,708 591,695" fill="#FF93D8"/>
+<circle cx="662" cy="772" r="8" fill="#8BE9FF"/><polygon points="656,777 662,790 668,777" fill="#8BE9FF"/>
+<circle cx="706" cy="640" r="8" fill="#B49BFF"/><polygon points="700,645 706,658 712,645" fill="#B49BFF"/>
+</g>
+<rect x="327" y="898" width="240" height="44" rx="22" fill="#ffffff" fill-opacity="0.07" stroke="#8BE9FF" stroke-opacity="0.45" stroke-width="1.3"/>
+<text x="447" y="927" text-anchor="middle" class="he" font-size="16" font-weight="700" fill="#8BE9FF" direction="rtl">סידור משאית בתלת־ממד</text>
+<rect x="583" y="898" width="170" height="44" rx="22" fill="#ffffff" fill-opacity="0.07" stroke="#B49BFF" stroke-opacity="0.45" stroke-width="1.3"/>
+<text x="668" y="927" text-anchor="middle" class="he" font-size="16" font-weight="700" fill="#B49BFF" direction="rtl">עוזר AI מובנה</text>
+<rect x="327" y="954" width="225" height="44" rx="22" fill="#ffffff" fill-opacity="0.07" stroke="#8BE9FF" stroke-opacity="0.45" stroke-width="1.3"/>
+<text x="439" y="983" text-anchor="middle" class="he" font-size="16" font-weight="700" fill="#8BE9FF" direction="rtl">פורטל נפרד למובילים</text>
+<rect x="568" y="954" width="185" height="44" rx="22" fill="#ffffff" fill-opacity="0.07" stroke="#FF93D8" stroke-opacity="0.45" stroke-width="1.3"/>
+<text x="660" y="983" text-anchor="middle" class="he" font-size="16" font-weight="700" fill="#FF93D8" direction="rtl">מפת לקוחות חיה</text>
+<g>
+<text x="270" y="1062" text-anchor="middle" class="en" font-size="36" font-weight="800" fill="#ffffff">20+</text>
+<text x="270" y="1094" text-anchor="middle" class="he" font-size="16" fill="#ffffff" fill-opacity="0.6" direction="rtl">מסכי מערכת</text>
+<line x1="405" y1="1034" x2="405" y2="1098" stroke="#ffffff" stroke-opacity="0.15"/>
+<text x="540" y="1062" text-anchor="middle" class="en" font-size="36" font-weight="800" fill="#ffffff">3</text>
+<text x="540" y="1094" text-anchor="middle" class="he" font-size="16" fill="#ffffff" fill-opacity="0.6" direction="rtl">פורטלים נפרדים</text>
+<line x1="675" y1="1034" x2="675" y2="1098" stroke="#ffffff" stroke-opacity="0.15"/>
+<text x="810" y="1062" text-anchor="middle" class="en" font-size="36" font-weight="800" fill="#ffffff">1</text>
+<text x="810" y="1094" text-anchor="middle" class="he" font-size="16" fill="#ffffff" fill-opacity="0.6" direction="rtl">מערכת לכל העסק</text>
+</g>
+<rect x="305" y="1136" width="470" height="54" rx="27" fill="#8BE9FF" fill-opacity="0.08" stroke="#8BE9FF" stroke-opacity="0.4" stroke-width="1.3"/>
+<text x="540" y="1170" text-anchor="middle" class="he" font-size="19" font-weight="700" fill="#8BE9FF" direction="rtl">✓ המשימה הושלמה — המערכת באוויר</text>
+<text x="540" y="1262" text-anchor="middle" class="he" font-size="18" font-weight="500" fill="#ffffff" fill-opacity="0.65" direction="rtl">רוצים מערכת כזו לעסק שלכם? דברו איתנו</text>
+<text x="540" y="1316" text-anchor="middle" class="en" font-size="15" font-weight="600" fill="#ffffff" fill-opacity="0.6">050-230-7500 · Itaybenyair99@gmail.com</text>
+</svg>
